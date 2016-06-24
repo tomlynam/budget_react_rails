@@ -20,11 +20,23 @@ class User extends React.Component {
 	}
 
 	toggleEdit() {
-
+		this.setState({ editView: !this.state.editView });
 	}
 
 	handleEdit(e) {
 		e.preventDefault();
+		let name = this.refs.name.value;
+		let dollar_amount = this.refs.dollar_amount.value;
+		$.ajax({
+			url: '/api/budgets/1',
+			type: 'PUT',
+			data: { budget: { name, dollar_amount } },
+			dataType: 'JSON'
+		}).done( budget => {
+			this.setState({ budget, editView: false });
+		}).fail( data => {
+			console.log(data);
+		})
 	}
 
 	addBudget(e) {
@@ -49,11 +61,23 @@ class User extends React.Component {
 	render() {
 		if(this.state.editView) {
 			// render edit view
+			return(
+				<div className='container'>
+					<h3 className='center'>Budget React App</h3>
+					<h3>Edit Budget:</h3>
+					<form onSubmit={this.handleEdit.bind(this)}>
+						<input ref='name' type='text' placeholder='Name' defaultValue={this.state.budget.name} />
+						<input ref='dollar_amount' type='text' placeholder='Income' defaultValue={this.state.budget.dollar_amount} />
+						<input type='submit' value='Update Budget' className='btn' />
+					</form>
+				</div>
+			)
 		} else {
 			if(this.state.budget) {
 				// return card with user's name and income
 				return( 
 					<div className="row container">
+						<h3 className='center'>{this.state.budget.name}&#39;s Budget</h3>
 		        <div className="col s12">
 		          <div className="card blue-grey darken-1">
 		            <div className="card-content white-text">
@@ -69,6 +93,7 @@ class User extends React.Component {
 				// show a form to input name and income
 				return(
 					<div className='container'>
+					<h3 className='center'>Budget React App</h3>
 						<form onSubmit={this.addBudget.bind(this)}>
 							<input type='text' placeholder='Name' ref='name' required />
 							<input type='text' placeholder='Income (e.g. 10000)' ref='dollar_amount' required />
