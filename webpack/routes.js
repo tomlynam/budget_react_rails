@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './containers/App';
 import NoMatch from './components/NoMatch';
 import User from './components/User';
-
+import LineItems from './components/LineItems';
 
 export default (
   <Route>

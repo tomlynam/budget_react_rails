@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :budgets
+    resources :lineitems
   end
 
   # KEEP THIS AT THE VERY BOTTOM

@@ -1,4 +1,5 @@
 import React from 'react';
+import LineItems from './LineItems';
 
 class User extends React.Component {
 	constructor(props) {
@@ -87,6 +88,7 @@ class User extends React.Component {
 		          </div>
 		        </div>
 		        <hr />
+		        <LineItems />
 		      </div>
 				)
 			} else {
