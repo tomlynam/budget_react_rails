@@ -26,7 +26,6 @@ class Api::BudgetsController < ApplicationController
 		end
 	end
 
-
 	private
 
 		def budget_params

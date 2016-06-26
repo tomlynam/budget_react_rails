@@ -17,6 +17,12 @@ class Api::LineitemsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@lineitem = Lineitem.find_by(id: params[:id])
+		@lineitem.destroy
+		render json: true
+	end
+
 	private
 
 		def lineitem_params

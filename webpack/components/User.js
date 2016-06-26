@@ -79,7 +79,7 @@ class User extends React.Component {
 				return( 
 					<div className="row container">
 						<h3 className='center'>{this.state.budget.name}&#39;s Budget</h3>
-		        <div className="col s12">
+		        <div className="">
 		          <div className="card blue-grey darken-1">
 		            <div className="card-content white-text">
 		              <div className="card-title">Income: ${this.state.budget.dollar_amount}</div>
@@ -87,7 +87,6 @@ class User extends React.Component {
 		            </div>
 		          </div>
 		        </div>
-		        <hr />
 		        <LineItems />
 		      </div>
 				)
